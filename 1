@@ -1,0 +1,25 @@
+'''Сформувати функцію, що буде обчислювати факторіал заданого користувачем
+натурального числа n.'''
+import timeit
+def factorial_rec(n):
+    if n==1:
+        return 1
+    else:
+        return factorial_rec(n-1)*n
+def factorial_iter(n,dob=1):
+    while n>0:
+        dob*=n
+        n=n-1
+    return dob
+n=int(input('x='))
+
+print(f'Recursion: \nfactorial = {factorial_rec(n)} '
+          f'\ntime = {timeit.timeit("factorial_rec(n)", setup="from __main__ import factorial_rec, n", number=1000)}')
+print(f'Iteration: \nfactorial = {factorial_iter(n)} '
+          f'\ntime = {timeit.timeit("factorial_iter(n)", setup="from __main__ import factorial_iter, n", number=1000)}')
+
+
+
+'''За часом розробки іттераційна була швидше
+   За часом виконання іттераційна була швидше
+   За читабілністю іттераційна краще'''
