@@ -1,0 +1,29 @@
+import timeit
+def func_rec(n):
+    x=s[n%16]
+    n=n//16
+    if n!=0:
+        return func_rec(n) + x
+    return x
+def func_iter(n):
+    global x
+    while n!=0:
+        x = s[n % 16]
+        n = n // 16
+        lis.append(x)
+    for i in lis[::-1]:
+        print(i,end='')
+    return ''
+lis=[]
+s = '0123456789ABCDEF'
+n=int(input('n='))
+
+print(f'Recursion: \nword = {func_rec(n)} '
+          f'\ntime = {timeit.timeit("func_rec(n)", setup="from __main__ import func_rec, n", number=1)}')
+print(f'Iteration: \nword = {func_iter(n)} '
+          f'\ntime = {timeit.timeit("func_iter(n)", setup="from __main__ import func_iter, n", number=1)}')
+
+
+'''За часом розробки рекурсивна була швидше
+   За часом виконання рекурсивна була швидше
+   За читабілністю рекурсивна краще'''
