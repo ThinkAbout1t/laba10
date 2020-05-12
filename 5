@@ -1,0 +1,30 @@
+'''Сформувати функцію, що визначатиме чи є задане натуральне число простим.
+Простим називається число, що більше за 1 та не має інших дільників, окрім 1 та самого
+себе).'''
+import timeit
+def func_rec(x,n=2):
+    if x>n:
+        if x%n!=0:
+            return func_rec(x,n+1)
+        else:
+            return 'number not simple'
+    return 'number simple'
+def func_iter(x,c=0):
+    for i in range(2,x):
+        if x%i==0:
+            c+=1
+    if c==0:
+        return 'number simple'
+    else:
+        return 'number not simple'
+x=int(input('x='))
+
+print(f'Recursion: \nword = {func_rec(x)} '
+          f'\ntime = {timeit.timeit("func_rec(x)", setup="from __main__ import func_rec, x", number=1000)}')
+print(f'Iteration: \nword = {func_iter(x)} '
+          f'\ntime = {timeit.timeit("func_iter(x)", setup="from __main__ import func_iter, x", number=1000)}')
+
+
+'''За часом розробки іттераційна була швидше
+   За часом виконання іттераційна була швидше коли число було простим, а рекурсивна коли число було не простим
+   За читабілністю рекурсивна краще'''
