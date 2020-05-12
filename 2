@@ -1,0 +1,29 @@
+'''Сформувати функцію для обчислення цифрового кореню натурального числа.
+Цифровий корінь отримується наступним чином: необхідно скласти всі цифри заданого
+числа, потім скласти всі цифри знайденої суми і повторювати процес до тих пір, поки
+сума не буде дорівнювати однозначному числу, що і буде цифровим коренем заданого
+числа.'''
+import timeit
+def kekw_rec(n):
+    if len(str(n))==1:
+        return n
+    else:
+        return kekw_rec(sum((int(i) for i in str(n))))
+def kekw_iter(n):
+    while n > 9:
+        i = int(n % 10)
+        n = n // 10
+        n = n + i
+    return n
+
+n=int(input('n='))
+
+print(f'Recursion: \nroot = {kekw_rec(n)} '
+          f'\ntime = {timeit.timeit("kekw_rec(n)", setup="from __main__ import kekw_rec, n", number=1000)}')
+print(f'Iteration: \nroot = {kekw_iter(n)} '
+          f'\ntime = {timeit.timeit("kekw_iter(n)", setup="from __main__ import kekw_iter, n", number=1000)}')
+
+
+'''За часом розробки іттераційна була швидше
+   За часом виконання іттераційна була швидше
+   За читабілністю іттераційна краще'''
