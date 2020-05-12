@@ -1,0 +1,24 @@
+'''Сформувати функцію для введення з клавіатури послідовності чисел і виведення
+її на екран у зворотному порядку (завершаючий символ послідовності – крапка)'''
+import timeit
+def func_rec(s):
+    if len(s)!=0:
+        print(s[-1], end = '')
+    if len(s)>1:
+        return func_rec(s[:-1])
+    return ''
+def func_iter(s):
+    s=s[::-1]
+    return s
+
+s=input()
+
+print(f'Recursion: \nword = {func_rec(s)} '
+          f'\ntime = {timeit.timeit("func_rec(s)", setup="from __main__ import func_rec, s", number=1)}')
+print(f'Iteration: \nword = {func_iter(s)} '
+          f'\ntime = {timeit.timeit("func_iter(s)", setup="from __main__ import func_iter, s", number=1)}')
+
+
+'''За часом розробки іттераційна була швидше
+   За часом виконання іттераційна була швидше
+   За читабілністю іттераційна краще'''
